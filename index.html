@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Munch — Every craving, understood.</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5EDE4;
+    --cream-light: #FAF7F3;
+    --navy: #1A1A2E;
+    --navy-soft: #2D2D44;
+    --text: #1A1A2E;
+    --text-mid: rgba(26, 26, 46, 0.55);
+    --text-light: rgba(26, 26, 46, 0.35);
+    --text-faint: rgba(26, 26, 46, 0.15);
+    --bg: #FAFAF8;
+    --accent-purple: #9B7EC8;
+    --accent-gold: #E8A040;
+    --accent-teal: #30B8B0;
+    --accent-pink: #E06090;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============================================
+     NAVIGATION
+     ============================================ */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(250, 250, 248, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--text-faint);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .nav-logo-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--cream);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--navy);
+  }
+
+  .nav-logo-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    letter-spacing: -0.3px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-mid);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--navy) !important;
+    color: white !important;
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--navy-soft) !important;
+    transform: translateY(-1px);
+  }
+
+  /* ============================================
+     HERO
+     ============================================ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: var(--cream);
+    opacity: 0.6;
+    filter: blur(100px);
+    z-index: 0;
+  }
+
+  .hero-bg-2 {
+    position: absolute;
+    bottom: -100px;
+    left: -150px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: var(--accent-purple);
+    opacity: 0.06;
+    filter: blur(80px);
+    z-index: 0;
+  }
+
+  .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .hero-text {
+    animation: fadeUp 0.8s ease-out both;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-mid);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .hero-tag-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-teal);
+  }
+
+  .hero-h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -2px;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--accent-purple);
+    transition: color 0.8s ease;
+  }
+
+  .hero-sub {
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-mid);
+    max-width: 440px;
+    margin-bottom: 40px;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    background: var(--navy);
+    color: white;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: var(--navy-soft);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(26, 26, 46, 0.15);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    background: transparent;
+    color: var(--text);
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    border: 1.5px solid var(--text-faint);
+    transition: all 0.25s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--text-mid);
+    transform: translateY(-1px);
+  }
+
+  /* Phone mockup in hero */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    animation: fadeUp 0.8s ease-out 0.2s both;
+  }
+
+  .phone-mockup {
+    width: 300px;
+    height: 620px;
+    background: var(--cream);
+    border-radius: 40px;
+    box-shadow: 0 32px 80px rgba(26, 26, 46, 0.12), 0 0 0 1px rgba(26, 26, 46, 0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phone-mockup-inner {
+    text-align: center;
+    padding: 40px;
+  }
+
+  .phone-mockup .mood-label {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 8px;
+  }
+
+  .phone-mockup .mood-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    color: var(--text);
+    letter-spacing: -1px;
+    transition: opacity 0.3s ease;
+  }
+
+  .phone-mockup .mood-sub {
+    font-size: 14px;
+    color: var(--text-light);
+    font-weight: 300;
+    margin-top: 8px;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Gradient overlays on phone */
+  .phone-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(155, 126, 200, 0.25) 0%, transparent 100%);
+    border-radius: 40px 40px 0 0;
+    transition: background 0.8s ease;
+  }
+
+  /* ============================================
+     HOW IT WORKS
+     ============================================ */
+  .section {
+    padding: 120px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 44px;
+    font-weight: 400;
+    letter-spacing: -1px;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  .section-sub {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-mid);
+    max-width: 520px;
+    margin-bottom: 64px;
+  }
+
+  /* Steps grid */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .step {
+    padding: 40px 32px;
+    border-radius: 24px;
+    background: white;
+    border: 1px solid var(--text-faint);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .step:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(26, 26, 46, 0.08);
+    border-color: transparent;
+  }
+
+  .step-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+  }
+
+  .step:nth-child(1) .step-gradient { background: linear-gradient(90deg, var(--accent-purple), #B89ED8); }
+  .step:nth-child(2) .step-gradient { background: linear-gradient(90deg, var(--accent-gold), #F0BC6A); }
+  .step:nth-child(3) .step-gradient { background: linear-gradient(90deg, var(--accent-teal), #60D0C8); }
+
+  .step:nth-child(1) .step-number { color: var(--accent-purple); opacity: 0.6; }
+  .step:nth-child(2) .step-number { color: var(--accent-gold); opacity: 0.6; }
+  .step:nth-child(3) .step-number { color: var(--accent-teal); opacity: 0.6; }
+
+  .step-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px;
+    margin-bottom: 20px;
+    line-height: 1;
+  }
+
+  .step-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+
+  .step-desc {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-mid);
+  }
+
+  /* ============================================
+     MOOD SHOWCASE
+     ============================================ */
+  .mood-showcase {
+    padding: 100px 48px;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mood-showcase-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .mood-pills {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+
+  .mood-pill {
+    padding: 16px 32px;
+    border-radius: 100px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    border: none;
+    cursor: default;
+    transition: all 0.3s ease;
+  }
+
+  .mood-pill:nth-child(1) {
+    background: rgba(155, 126, 200, 0.15);
+    color: #7B5EB0;
+  }
+  .mood-pill:nth-child(2) {
+    background: rgba(61, 187, 115, 0.12);
+    color: #2A9E5C;
+  }
+  .mood-pill:nth-child(3) {
+    background: rgba(232, 160, 64, 0.15);
+    color: #C08820;
+  }
+  .mood-pill:nth-child(4) {
+    background: rgba(224, 96, 144, 0.12);
+    color: #CC4070;
+  }
+  .mood-pill:nth-child(5) {
+    background: rgba(96, 144, 208, 0.12);
+    color: #4070B8;
+  }
+  .mood-pill:nth-child(6) {
+    background: rgba(48, 184, 176, 0.12);
+    color: #1A9E96;
+  }
+  .mood-pill:nth-child(7) {
+    background: rgba(200, 128, 96, 0.15);
+    color: #B06840;
+  }
+
+  /* ============================================
+     FEATURE SECTION
+     ============================================ */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 64px;
+  }
+
+  .feature-card {
+    padding: 48px 40px;
+    border-radius: 24px;
+    background: white;
+    border: 1px solid var(--text-faint);
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    border-color: transparent;
+    box-shadow: 0 8px 32px rgba(26, 26, 46, 0.06);
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+
+  .feature-card:nth-child(1) .feature-icon { background: rgba(155, 126, 200, 0.12); }
+  .feature-card:nth-child(2) .feature-icon { background: rgba(232, 160, 64, 0.12); }
+  .feature-card:nth-child(3) .feature-icon { background: rgba(48, 184, 176, 0.12); }
+  .feature-card:nth-child(4) .feature-icon { background: rgba(224, 96, 144, 0.12); }
+
+  .feature-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+  }
+
+  .feature-desc {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-mid);
+  }
+
+  /* ============================================
+     VIDEO SECTION
+     ============================================ */
+  .video-section {
+    padding: 120px 48px;
+    text-align: center;
+    background: var(--bg);
+  }
+
+  .video-container {
+    max-width: 800px;
+    margin: 48px auto 0;
+    border-radius: 24px;
+    overflow: hidden;
+    background: var(--cream);
+    aspect-ratio: 9/16;
+    max-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 24px 64px rgba(26, 26, 46, 0.1);
+    border: 1px solid var(--text-faint);
+  }
+
+  .video-placeholder {
+    font-size: 16px;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  /* ============================================
+     QUOTE / AI SECTION
+     ============================================ */
+  .quote-section {
+    padding: 100px 48px;
+    background: var(--navy);
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-section .section-label {
+    color: rgba(255,255,255,0.3);
+  }
+
+  .quote-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: -0.5px;
+    max-width: 700px;
+    margin: 0 auto;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .quote-text em {
+    font-style: italic;
+    color: var(--accent-gold);
+  }
+
+  .quote-attr {
+    margin-top: 24px;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ============================================
+     ABOUT / CTA
+     ============================================ */
+  .cta-section {
+    padding: 120px 48px;
+    text-align: center;
+  }
+
+  .cta-section .section-title {
+    max-width: 600px;
+    margin: 0 auto 20px;
+  }
+
+  .cta-section .section-sub {
+    max-width: 480px;
+    margin: 0 auto 40px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  /* ============================================
+     FOOTER
+     ============================================ */
+  footer {
+    padding: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--text-faint);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-left .nav-logo-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 15px;
+    border-radius: 8px;
+  }
+
+  .footer-text {
+    font-size: 13px;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:hover { color: var(--text); }
+
+  /* ============================================
+     ANIMATIONS
+     ============================================ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: all 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ============================================
+     RESPONSIVE
+     ============================================ */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+
+    .hero { padding: 100px 24px 60px; }
+    .hero-content { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+    .hero-h1 { font-size: 44px; letter-spacing: -1px; }
+    .hero-sub { max-width: 100%; }
+    .hero-buttons { justify-content: center; }
+    .hero-visual { order: -1; }
+    .phone-mockup { width: 240px; height: 500px; }
+
+    .section { padding: 80px 24px; }
+    .section-title { font-size: 32px; }
+    .steps-grid { grid-template-columns: 1fr; gap: 20px; }
+    .features-grid { grid-template-columns: 1fr; }
+
+    .mood-showcase { padding: 64px 24px; }
+    .mood-pills { gap: 10px; }
+    .mood-pill { padding: 12px 24px; font-size: 17px; }
+
+    .quote-text { font-size: 26px; }
+    .quote-section { padding: 64px 24px; }
+
+    .video-section { padding: 80px 24px; }
+    .cta-section { padding: 80px 24px; }
+
+    footer { padding: 32px 24px; flex-direction: column; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">M</div>
+    <span class="nav-logo-text">Munch</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#how-it-works">How it works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#demo" class="nav-cta">Watch demo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-2"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-tag">
+        <div class="hero-tag-dot"></div>
+        Restaurant discovery, reimagined
+      </div>
+      <h1 class="hero-h1">Every craving,<br><em>understood.</em></h1>
+      <p class="hero-sub">Munch is an AI companion that picks restaurants based on how you feel — not just what's nearby. Tell it your mood. It does the rest.</p>
+      <div class="hero-buttons">
+        <a href="#demo" class="btn-primary">Watch the demo ↓</a>
+        <a href="#case-study" class="btn-secondary">Read case study</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone-mockup">
+        <div class="phone-gradient"></div>
+        <div class="phone-mockup-inner">
+          <p class="mood-label">How are you feeling?</p>
+          <p class="mood-name">Groggy</p>
+          <p class="mood-sub">Low energy, need fuel</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <p class="section-label">How it works</p>
+  <h2 class="section-title">Three taps to the<br>perfect restaurant.</h2>
+  <p class="section-sub">No searching. No scrolling. No decision fatigue. Just tell Munch how you're feeling and let it do the thinking.</p>
+
+  <div class="steps-grid">
+    <div class="step reveal">
+      <div class="step-gradient"></div>
+      <div class="step-number">01</div>
+      <h3 class="step-title">Pick your mood</h3>
+      <p class="step-desc">Swipe through full-screen mood cards — Groggy, Indulgent, Adventurous, Social. Each comes with its own color palette and personality. Not sure? Shuffle for a fresh set.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-gradient"></div>
+      <div class="step-number">02</div>
+      <h3 class="step-title">Answer three questions</h3>
+      <p class="step-desc">Munch asks smart, contextual follow-ups. Sit-down or takeout? Budget? How far? Questions adapt to your mood — it won't ask "eating alone?" when you picked Social.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-gradient"></div>
+      <div class="step-number">03</div>
+      <h3 class="step-title">Swipe through picks</h3>
+      <p class="step-desc">Five AI-curated restaurants, each with real photos, ratings, and a personal note from Munch explaining exactly why this place fits your vibe right now.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MOOD SHOWCASE -->
+<section class="mood-showcase">
+  <div class="mood-showcase-inner">
+    <p class="section-label">Emotion-first design</p>
+    <h2 class="section-title">Your mood is the menu.</h2>
+    <p class="section-sub" style="max-width: 480px; margin: 0 auto;">Every food app asks "what do you want?" — Munch asks "how are you feeling?" Seven moods. Infinite possibilities.</p>
+    <div class="mood-pills">
+      <span class="mood-pill">Groggy</span>
+      <span class="mood-pill">Healthy</span>
+      <span class="mood-pill">Indulgent</span>
+      <span class="mood-pill">Social</span>
+      <span class="mood-pill">Quick</span>
+      <span class="mood-pill">Adventurous</span>
+      <span class="mood-pill">Comfort</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <p class="section-label">What makes it different</p>
+  <h2 class="section-title">Not another restaurant list.</h2>
+  <p class="section-sub">Munch is designed to help you decide, not give you more options to scroll through.</p>
+
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <div class="feature-icon">🧠</div>
+      <h3 class="feature-title">AI with personality</h3>
+      <p class="feature-desc">Munch doesn't just rank restaurants. It writes you a personal note for each pick — like a friend who knows food explaining why this place is perfect for how you're feeling right now.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">🎨</div>
+      <h3 class="feature-title">Dynamic color theming</h3>
+      <p class="feature-desc">Every mood has its own animated gradient. Every restaurant card shifts the color palette to match. The app doesn't just show you options — it sets the emotional tone.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">🎯</div>
+      <h3 class="feature-title">Smart question flow</h3>
+      <p class="feature-desc">Three contextual questions that adapt to your mood. The app learns what not to ask — reducing friction and getting you to a decision in under 30 seconds.</p>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">📍</div>
+      <h3 class="feature-title">Real restaurant data</h3>
+      <p class="feature-desc">Powered by Google Places with real photos, ratings, hours, and reviews. Not a curated list — actual restaurants near you, filtered by AI for your specific moment.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <p class="section-label">Munch's Take</p>
+  <p class="quote-text">"Their tonkotsu is exactly what a rough day needs. Rich, warming, and <em>deeply satisfying.</em>"</p>
+  <p class="quote-attr">— Munch, for a Groggy user near Kuma Ramen</p>
+</section>
+
+<!-- DEMO VIDEO -->
+<section class="video-section" id="demo">
+  <p class="section-label">See it in action</p>
+  <h2 class="section-title">From mood to meal<br>in 30 seconds.</h2>
+  <div class="video-container">
+    <!-- OPTION 1: Local video file (put your .mp4 in the same folder) -->
+    <!-- <video autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;">
+      <source src="munch-demo.mp4" type="video/mp4">
+    </video> -->
+
+    <!-- OPTION 2: YouTube embed (replace VIDEO_ID) -->
+    <!-- <iframe width="100%" height="100%" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen style="border:0;"></iframe> -->
+
+    <!-- Placeholder — remove this once you add your video -->
+    <p class="video-placeholder">[ Your demo video goes here ]<br><br>See the HTML comments above for<br>embed instructions</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about" style="text-align: center;">
+  <p class="section-label">Why this app exists</p>
+  <h2 class="section-title" style="max-width: 600px; margin: 0 auto 20px;">I was tired of scrolling<br>through restaurant lists.</h2>
+  <div style="max-width: 560px; margin: 0 auto; font-size: 17px; font-weight: 300; line-height: 1.7; color: var(--text-mid);">
+    <p>Every food app gives you the same thing: a searchable list sorted by rating or distance. Nobody asks the question that actually matters — how are you feeling right now?</p>
+    <p style="margin-top: 16px;">I built Munch to prove that emotion-first design creates better recommendations than data-first design. A user who says "I'm exhausted" needs a different restaurant than one who says "I'm celebrating" — even if they're standing in the same spot.</p>
+    <p style="margin-top: 16px;">I'm a product manager who used AI tools as my engineering team. I drove every product decision — the pivot from chat to cards, the smart question flow, the dynamic color system. AI wrote the code. I designed the experience.</p>
+    <p style="margin-top: 24px; color: var(--text); font-weight: 400;">— Leon Tan</p>
+    <p style="font-size: 14px; color: var(--text-light); margin-top: 4px;">MS Computer Science, UIUC · BS Cognitive Science/HCI, UCSD</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="case-study">
+  <p class="section-label">Go deeper</p>
+  <h2 class="section-title">Want to know how I built this?</h2>
+  <p class="section-sub">Read the full case study or the Medium article about product thinking with AI tools.</p>
+  <div class="cta-buttons">
+    <a href="#" class="btn-primary">Read case study</a>
+    <a href="#" class="btn-secondary">Medium article</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <div class="nav-logo-icon">M</div>
+    <span class="footer-text">Munch — Every craving, understood.</span>
+  </div>
+  <div class="footer-links">
+    <a href="#">LinkedIn</a>
+    <a href="#">GitHub</a>
+    <a href="#">Portfolio</a>
+  </div>
+</footer>
+
+<!-- Scroll reveal + mood cycling -->
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Mood cycling on phone mockup + hero text color
+  const moods = [
+    { name: 'Groggy', sub: 'Low energy, need fuel', color: '#9B7EC8', gradient: 'rgba(155, 126, 200, 0.25)' },
+    { name: 'Healthy', sub: 'Clean eating vibes', color: '#3DBB73', gradient: 'rgba(61, 187, 115, 0.22)' },
+    { name: 'Indulgent', sub: 'Treat yourself', color: '#E8A040', gradient: 'rgba(232, 160, 64, 0.25)' },
+    { name: 'Social', sub: 'Group dinner energy', color: '#E06090', gradient: 'rgba(224, 96, 144, 0.22)' },
+    { name: 'Quick', sub: 'In and out, no fuss', color: '#6090D0', gradient: 'rgba(96, 144, 208, 0.22)' },
+    { name: 'Adventurous', sub: 'Try something new', color: '#30B8B0', gradient: 'rgba(48, 184, 176, 0.22)' },
+    { name: 'Comfort', sub: 'Warm and cozy', color: '#C88060', gradient: 'rgba(200, 128, 96, 0.25)' },
+  ];
+
+  let currentMood = 0;
+  const moodNameEl = document.querySelector('.phone-mockup .mood-name');
+  const moodSubEl = document.querySelector('.phone-mockup .mood-sub');
+  const phoneGradient = document.querySelector('.phone-gradient');
+  const heroEm = document.querySelector('.hero-h1 em');
+
+  function cycleMood() {
+    // Fade out
+    moodNameEl.style.opacity = '0';
+    moodSubEl.style.opacity = '0';
+
+    setTimeout(() => {
+      currentMood = (currentMood + 1) % moods.length;
+      const mood = moods[currentMood];
+
+      // Update text
+      moodNameEl.textContent = mood.name;
+      moodSubEl.textContent = mood.sub;
+
+      // Update colors
+      phoneGradient.style.background = `linear-gradient(180deg, ${mood.gradient} 0%, transparent 100%)`;
+      heroEm.style.color = mood.color;
+
+      // Fade in
+      moodNameEl.style.opacity = '1';
+      moodSubEl.style.opacity = '1';
+    }, 350);
+  }
+
+  setInterval(cycleMood, 3000);
+</script>
+
+</body>
+</html>
